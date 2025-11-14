@@ -1,0 +1,8 @@
+C:\Users\Alich_Vilmos_Gergely\Desktop\Mester\joHalmaz\joHalmaz\bin\Debug\joHalmaz.exe.config
+C:\Users\Alich_Vilmos_Gergely\Desktop\Mester\joHalmaz\joHalmaz\bin\Debug\joHalmaz.exe
+C:\Users\Alich_Vilmos_Gergely\Desktop\Mester\joHalmaz\joHalmaz\bin\Debug\joHalmaz.pdb
+C:\Users\Alich_Vilmos_Gergely\Desktop\Mester\joHalmaz\joHalmaz\obj\Debug\joHalmaz.csproj.AssemblyReference.cache
+C:\Users\Alich_Vilmos_Gergely\Desktop\Mester\joHalmaz\joHalmaz\obj\Debug\joHalmaz.csproj.CoreCompileInputs.cache
+C:\Users\Alich_Vilmos_Gergely\Desktop\Mester\joHalmaz\joHalmaz\obj\Debug\joHalmaz.exe
+C:\Users\Alich_Vilmos_Gergely\Desktop\Mester\joHalmaz\joHalmaz\obj\Debug\joHalmaz.pdb
+C:\Users\Alich_Vilmos_Gergely\Desktop\Mester\joHalmaz\joHalmaz\obj\Debug\joHalmaz.exe.config
