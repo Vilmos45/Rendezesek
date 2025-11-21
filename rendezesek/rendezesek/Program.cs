@@ -9,8 +9,8 @@ namespace rendezesek
     {
         static Random r = new Random();
 
-        #region MinimumKiválasztás
-        static void MinimumKiválasztásosRendezés<T>(List<T> lista, Func<T, T, int> comparator)//Selection sort
+        #region Minimum kiválasztásos rendezés
+        static void SelectionSort<T>(List<T> lista, Func<T, T, int> comparator)//Selection sort
         {
             for (int i = 0; i < lista.Count - 1; i++)
                 Csere(lista, Legkisebb_elem_helye_innentol(lista, i, comparator), i);
@@ -35,8 +35,8 @@ namespace rendezesek
         }
         #endregion
 
-        #region BeszuroRendezes
-        static void Beszuro_rendezes<T>(List<T> lista, Func<T, T, int> comparator) // Insertion sort
+        #region Beszuró rendezés
+        static void InsertionSort<T>(List<T> lista, Func<T, T, int> comparator) // Insertion sort
         {
             for (int i = 1; i < lista.Count; i++) //F11 debug, F9, F10
                 Balra_süllyeszt(lista, i, comparator);
@@ -65,8 +65,8 @@ namespace rendezesek
         }
         #endregion
 
-        #region Gagyi Buborékos rendezés
-        static void Gagyi_Buborekos_rendezes<T>(List<T> lista, Func<T, T, int> comparator)
+        #region Gagyi buborékos rendezés
+        static void Gagyi_BubbleSort<T>(List<T> lista, Func<T, T, int> comparator)
         {
             for (int meddig = lista.Count; 0 < meddig; meddig--)
             {
@@ -80,7 +80,7 @@ namespace rendezesek
         #endregion
 
         #region Buborékos rendezés
-        static void Buborekos_rendezes<T>(List<T> lista, Func<T, T, int> comparator)
+        static void BubbleSort<T>(List<T> lista, Func<T, T, int> comparator)
         {
             for (int meddig = lista.Count; 0 < meddig; meddig--)
             {
@@ -154,6 +154,32 @@ namespace rendezesek
         }
         #endregion
 
+        #region Gyors rendezés
+        static void QuickSort(List<int> lista) => QuickSort(lista, 0, lista.Count - 1);
+
+        static void QuickSort(List<int> lista, int e, int v)
+        {
+            int helye = Particionalas(lista, e, v);
+            QuickSort(lista, e, helye - 1);
+            QuickSort(lista, helye + 1, v);
+        }
+
+        static int Particionalas(List<int> lista, int e, int v)
+        {
+            int i = e;
+            int j = v;
+            while (i != j)
+            {
+                if ((i < j) != (lista[i] < lista[j]))
+                {
+                    (lista[i], lista[j]) = (lista[j], lista[i]);
+                    (i, j) = (j, i);
+                }
+            }
+            return i;
+        }
+        #endregion
+
         #region Tesztelés
 
         #region Compratorok
@@ -203,7 +229,7 @@ namespace rendezesek
             List<string> lists = new List<string> { "alma", "körte", "barack", "szőlő", "gerinc", "faóra", "termesz", "palack", "malac" };
             Console.WriteLine("     " + string.Join(", ", lista));
 
-            MinimumKiválasztásosRendezés(listb, Abszolútérték_szertint);
+            SelectionSort(listb, Abszolútérték_szertint);
             //lista.Sort();
             //Console.WriteLine("     Sorrendeben van-e: " + Jo_e(lista));
 
@@ -258,13 +284,17 @@ namespace rendezesek
         static void Main(string[] args)
         {
             Console.WriteLine("Minimumkiválasztásos rendezés:");
-            Teszt(-5, 10, 1000, 1000, 1000, MinimumKiválasztásosRendezés);
+            Teszt(-5, 10, 1000, 1000, 1000, SelectionSort);
             Console.WriteLine("Beszúró rendezés:");
-            Teszt(-5, 10, 1000, 1000, 1000, Beszuro_rendezes);
+            Teszt(-5, 10, 1000, 1000, 1000, InsertionSort);
+            Console.WriteLine("Gagyi buborékos rendezés:");
+            Teszt(-5, 10, 1000, 1000, 1000, Gagyi_BubbleSort);
             Console.WriteLine("Buborékos rendezés:");
-            Teszt(-5, 10, 1000, 1000, 1000, Buborekos_rendezes);
+            Teszt(-5, 10, 1000, 1000, 1000, BubbleSort);
             Console.WriteLine("Összefésüléses rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, MergeSort);
+            Console.WriteLine("Gyors rendezés:");
+            Teszt(-5, 10, 1000, 1000, 1000, QuickSort);
         }
     }
 }
