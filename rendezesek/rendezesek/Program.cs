@@ -155,22 +155,23 @@ namespace rendezesek
         #endregion
 
         #region Gyors rendezés
-        static void QuickSort(List<int> lista) => QuickSort(lista, 0, lista.Count - 1);
+        static void QuickSort<T>(List<T> lista, Func<T, T, int> comp) => QuickSort<T>(lista, 0, lista.Count - 1, comp);
 
-        static void QuickSort(List<int> lista, int e, int v)
+        static void QuickSort<T>(List<T> lista, int e, int v, Func<T, T, int> comp)
         {
-            int helye = Particionalas(lista, e, v);
-            QuickSort(lista, e, helye - 1);
-            QuickSort(lista, helye + 1, v);
+            if ()
+            int helye = Particionalas(lista, e, v, comp);
+            QuickSort(lista, e, helye - 1, comp);
+            QuickSort(lista, helye + 1, v, comp);
         }
 
-        static int Particionalas(List<int> lista, int e, int v)
+        static int Particionalas<T>(List<T> lista, int e, int v, Func<T, T, int> comp)
         {
             int i = e;
             int j = v;
             while (i != j)
             {
-                if ((i < j) != (lista[i] < lista[j]))
+                if ((i < j) != (comp(lista[i], lista[j]) == -1))
                 {
                     (lista[i], lista[j]) = (lista[j], lista[i]);
                     (i, j) = (j, i);
@@ -222,20 +223,6 @@ namespace rendezesek
         }
         #endregion
 
-        static void GagyiTeszt()
-        {
-            List<int> lista = new List<int> { 3, 0, 1, 8, 7, 2, 5, 4, 9, 6 };
-            List<int> listb = new List<int> { 0, 3, 8, -8, 7, 5, 4, -9, 6, 75 };
-            List<string> lists = new List<string> { "alma", "körte", "barack", "szőlő", "gerinc", "faóra", "termesz", "palack", "malac" };
-            Console.WriteLine("     " + string.Join(", ", lista));
-
-            SelectionSort(listb, Abszolútérték_szertint);
-            //lista.Sort();
-            //Console.WriteLine("     Sorrendeben van-e: " + Jo_e(lista));
-
-            Console.WriteLine("     " + string.Join(", ", lista));
-        }
-
         static bool Jo_e(List<int> lista)
         {
             if (lista.Count < 2)
@@ -283,7 +270,8 @@ namespace rendezesek
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Minimumkiválasztásos rendezés:");
+            List<int> lista = new List<int> { 3, 0, 1, 8, 7, 2, 5, 4, 9, 6 };
+            /** /Console.WriteLine("Minimumkiválasztásos rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, SelectionSort);
             Console.WriteLine("Beszúró rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, InsertionSort);
@@ -292,7 +280,7 @@ namespace rendezesek
             Console.WriteLine("Buborékos rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, BubbleSort);
             Console.WriteLine("Összefésüléses rendezés:");
-            Teszt(-5, 10, 1000, 1000, 1000, MergeSort);
+            Teszt(-5, 10, 1000, 1000, 1000, MergeSort);/**/
             Console.WriteLine("Gyors rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, QuickSort);
         }
