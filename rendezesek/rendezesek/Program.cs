@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace rendezesek
 {
@@ -159,10 +158,12 @@ namespace rendezesek
 
         static void QuickSort<T>(List<T> lista, int e, int v, Func<T, T, int> comp)
         {
-            if ()
-            int helye = Particionalas(lista, e, v, comp);
-            QuickSort(lista, e, helye - 1, comp);
-            QuickSort(lista, helye + 1, v, comp);
+            if (e < v)
+            {
+                int helye = Particionalas(lista, e, v, comp);
+                QuickSort(lista, e, helye - 1, comp);
+                QuickSort(lista, helye + 1, v, comp);
+            }
         }
 
         static int Particionalas<T>(List<T> lista, int e, int v, Func<T, T, int> comp)
@@ -176,6 +177,7 @@ namespace rendezesek
                     (lista[i], lista[j]) = (lista[j], lista[i]);
                     (i, j) = (j, i);
                 }
+                j += i.CompareTo(j); //-1 ha 1<j különben 1
             }
             return i;
         }
@@ -270,8 +272,8 @@ namespace rendezesek
 
         static void Main(string[] args)
         {
-            List<int> lista = new List<int> { 3, 0, 1, 8, 7, 2, 5, 4, 9, 6 };
-            /** /Console.WriteLine("Minimumkiválasztásos rendezés:");
+            //List<int> lista = new List<int> { 3, 0, 1, 8, 7, 2, 5, 4, 9, 6 };
+            Console.WriteLine("Minimumkiválasztásos rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, SelectionSort);
             Console.WriteLine("Beszúró rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, InsertionSort);
@@ -280,7 +282,7 @@ namespace rendezesek
             Console.WriteLine("Buborékos rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, BubbleSort);
             Console.WriteLine("Összefésüléses rendezés:");
-            Teszt(-5, 10, 1000, 1000, 1000, MergeSort);/**/
+            Teszt(-5, 10, 1000, 1000, 1000, MergeSort);
             Console.WriteLine("Gyors rendezés:");
             Teszt(-5, 10, 1000, 1000, 1000, QuickSort);
         }
